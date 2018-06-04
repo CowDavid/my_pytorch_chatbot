@@ -17,11 +17,11 @@ Test the seq2seq model
 ```
 python main.py -te <SEQ2SEQ_MODEL_FILE_PATH> -pre .<PRETRAINED_MODEL_FILE_PATH> -c <TRAINING_CORPUS_FILE_PATH> -cd <TESTING_CORPUS_FILE_PATH>
 ```
-> python main.py -te ./save/model/movie_subtitles_en/1-1_300/26000_backup_bidir_model.tar -pre ./save/model/GoogleNews-vectors-negative300.bin -c ./data/movie_subtitles_en.txt - ./data/movie_subtitles_en.txt
+> python main.py -te ./save/model/movie_subtitles_en/1-1_300/5000_backup_bidir_model.tar -pre ./save/model/GoogleNews-vectors-negative300.bin -c ./data/movie_subtitles_en.txt - ./data/movie_subtitles_en.txt
 
 ### Loss Graph
 Draw the loss graph.
 ```
 python main.py -lo <MODEL_FILE_PATH> -c <CORPUS_FILE_PATH> -hi 300
 ```
-> python main.py -lo ./save/model/movie_subtitles_en/1-1_300/5_backup_bidir_model.tar -c ./data/movie_subtitles_en.txt -hi 300
+> python main.py -lo ./save/model/movie_subtitles_en/1-1_300/5000_backup_bidir_model.tar -c ./data/movie_subtitles_en.txt -hi 300
