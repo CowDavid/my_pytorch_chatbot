@@ -194,7 +194,7 @@ def trainIters(corpus, pre_modelFile, reverse, n_iteration, learning_rate, batch
                                                                         batch_size)))
     # model
     checkpoint = None 
-    print('Building pretrained word2vector model...')
+    #print('Building pretrained word2vector model...')
     embedding = nn.Embedding(300, hidden_size) #The dimension of google's model is 300
     #-----------------------------------------------------------------
     #my code
