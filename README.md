@@ -1,49 +1,27 @@
-# pytorch-chatbot
-This is a pytorch seq2seq tutorial for [Formosa Speech Grand Challenge](https://fgc.stpi.narl.org.tw/activity/techai), which is modified from [pratical-pytorch seq2seq-translation-batched](https://github.com/spro/practical-pytorch/blob/master/seq2seq-translation/seq2seq-translation-batched.ipynb).  
-Here is the [tutorial](https://fgc.stpi.narl.org.tw/activity/videoDetail/4b1141305df38a7c015e194f22f8015b) in Chinese.
+# my_pytorch_chatbot
+ pytorch_chatbot(with gensim loaded model)
+### Source of the corpus
+https://github.com/Marsan-Ma/chat_corpus
+### Source code
+My codes is modified from the code from https://github.com/ywk991112/pytorch-chatbot
+### Training
+#### Seq2seq
+Train the seq2seq model with pretrained word2vector model.
+```
+python main.py -tr <CORPUS_FILE_PATH> -pre <PRETRAINED_MODEL_FILE_PATH> -la 1 -hi 300 -lr 0.0001 -it 50000 -b 64 -p 500 -s 1000
+```
+> python main.py -tr ./data/movie_subtitles_en.txt -pre ./save/model/GoogleNews-vectors-negative300.bin -la 1 -hi 300 -lr 0.0001 -it 50000 -b 64 -p 500 -s 1000
+### Test
+Test the seq2seq model
+#### test randomly
+```
+python main.py -te <SEQ2SEQ_MODEL_FILE_PATH> -pre .<PRETRAINED_MODEL_FILE_PATH> -c <TRAINING_CORPUS_FILE_PATH> -cd <TESTING_CORPUS_FILE_PATH>
+```
+> python main.py -te ./save/model/movie_subtitles_en/1-1_300/26000_backup_bidir_model.tar -pre ./save/model/GoogleNews-vectors-negative300.bin -c ./data/movie_subtitles_en.txt -cd ./data/movie_subtitles_en.txt
 
-## Get started
-#### Clone the repository
+### Loss Graph
+Draw the loss graph.
 ```
-git clone https://github.com/ywk991112/pytorch-chatbot
+python main.py -lo <MODEL_FILE_PATH> -c <CORPUS_FILE_PATH> -hi 300
 ```
-#### Corpus
-In the corpus file, the input-output sequence pairs should be in the adjacent lines. For example, 
-```
-I'll see you next time.
-Sure. Bye.
-How are you?
-Better than ever.
-```
-The corpus files should be placed under a path like,
-```
-pytorch-chatbot/data/<corpus file name>
-```
-Otherwise, the corpus file will be tracked by git.
-#### Training
-Run this command to start training, change the argument values in your own need.
-```
-python3 main.py -tr <CORPUS_FILE_PATH> -la 1 -hi 512 -lr 0.0001 -it 50000 -b 64 -p 500 -s 1000
-```
-Continue training with saved model.
-```
-python3 main.py -tr <CORPUS_FILE_PATH> -l <MODEL_FILE_PATH> -lr 0.0001 -it 50000 -b 64 -p 500 -s 1000
-```
-For more options,
-```
-python3 main.py -h
-```
-#### Testing
-Models will be saved in `pytorch-chatbot/save/model` while training, and this can be changed in `config.py`.  
-Evaluate the saved model with input sequences in the corpus.
-```
-python3 main.py -te <MODEL_FILE_PATH> -c <CORPUS_FILE_PATH>
-```
-Test the model with input sequence manually.
-```
-python3 main.py -te <MODEL_FILE_PATH> -c <CORPUS_FILE_PATH> -i
-```
-Beam search with size k.
-```
-python3 main.py -te <MODEL_FILE_PATH> -c <CORPUS_FILE_PATH> -be k [-i] 
-```
+> python main.py -lo ./save/model/movie_subtitles_en/1-1_300/5_backup_bidir_model.tar -c ./data/movie_subtitles_en.txt -hi 300
